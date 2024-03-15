@@ -1,0 +1,4 @@
+module PinnaclePrefsC {
+    umbrella "."
+    export *
+}

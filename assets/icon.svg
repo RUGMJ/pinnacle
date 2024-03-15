@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1"
+   width="1000"
+   height="1000"
+   viewBox="0 0 999.99996 999.99994"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <linearGradient
+       id="linearGradient2">
+      <stop
+         style="stop-color:#00294a;stop-opacity:1;"
+         offset="0"
+         id="stop2" />
+      <stop
+         style="stop-color:#00006d;stop-opacity:1;"
+         offset="1"
+         id="stop3" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#linearGradient2"
+       id="linearGradient3"
+       x1="418.13672"
+       y1="294.2988"
+       x2="1052.9233"
+       y2="1023.0594"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.99174385,0,0,0.9834495,9.9356757,19.204649)" />
+  </defs>
+  <g
+     id="g1"
+     transform="translate(-60.518868)">
+    <g
+       id="group-R5"
+       transform="translate(-135.87868,-160.18423)">
+      <rect
+         style="fill:url(#linearGradient3);fill-opacity:1;stroke:#4d4d4d;stroke-width:2.42921"
+         id="rect2"
+         width="1005.4269"
+         height="998.60553"
+         x="196.17422"
+         y="160.85521" />
+      <path
+         id="path2"
+         d="m 340.12771,803.22151 96.69054,-127.84006 39.42105,-3.57506 62.47746,-81.3526 60.24607,61.68463 66.94012,-82.24573 17.10547,-1.34097 43.8837,-65.70753 139.08708,182.37197 22.31339,-27.71383 164.37481,160.02193 -168.47931,-100.31258 -42.75359,24.32523 c 0,0 -69.17146,-39.33602 -71.40282,-41.1236 -2.23128,-1.78748 -42.39536,-28.60692 -47.60221,-28.60692 -5.20569,0 -43.13849,27.71253 -43.13849,27.71253 l 24.54477,-59.00269 25.28773,-29.50135 -8.92538,-30.39443 -14.13106,-19.66801 -157.6819,172.53865 2.23134,-25.03196 2.97548,-35.75965 11.15669,-27.71246 -23.80055,-26.8194 -57.27176,69.73041 -37.93273,0.89309 -105.6159,114.43039"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.122314" />
+    </g>
+  </g>
+</svg>

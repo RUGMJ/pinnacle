@@ -1,0 +1,9 @@
+Package: dev.rugmj.pinnacle
+Name: Pinnacle
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: An awesome Orion tweak!
+Maintainer: rugmj
+Author: rugmj
+Section: Tweaks
+Depends: ${ORION}, firmware (>= 15.0), com.ginsu.comet, com.opa334.altlist
