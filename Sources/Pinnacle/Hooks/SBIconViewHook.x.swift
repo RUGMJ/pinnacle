@@ -19,6 +19,7 @@ class SBIconViewHook: ClassHook<SBIconView> {
         guard target.icon.isKind(of: SBApplicationIcon.classForCoder()) else { return }
         icon = target.icon as? SBApplicationIcon
 
+        guard target.superview != nil else { return }
         guard !target.superview!.isKind(of: SBDockIconListView.classForCoder()) else { return }
 
         guard !target.isKind(of: PinnacleIconView.classForCoder()) else { return }
