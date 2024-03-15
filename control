@@ -2,7 +2,7 @@ Package: dev.rugmj.pinnacle
 Name: Pinnacle
 Version: 0.0.1
 Architecture: iphoneos-arm
-Description: An awesome Orion tweak!
+Description: A new way to organise your apps
 Maintainer: rugmj
 Author: rugmj
 Section: Tweaks
