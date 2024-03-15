@@ -80,3 +80,6 @@ NSString *plusCirclePath();
 
 @interface SBHLibraryCategoryPodIconView : SBIconView
 @end
+
+@interface SBDockIconListView : SBIconListView
+@end

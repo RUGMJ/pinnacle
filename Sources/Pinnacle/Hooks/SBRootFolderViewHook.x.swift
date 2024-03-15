@@ -6,7 +6,6 @@ class SBRootFolderViewHook: ClassHook<SBRootFolderView> {
         orig.setEditing(editing, animated: animated)
 
         guard active else { return }
-        guard !editing else { return }
 
         guard let iconList = activeIconList else { return }
         iconList._pinnacleResetAllIconViews()

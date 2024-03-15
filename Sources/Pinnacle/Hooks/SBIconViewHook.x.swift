@@ -19,6 +19,8 @@ class SBIconViewHook: ClassHook<SBIconView> {
         guard target.icon.isKind(of: SBApplicationIcon.classForCoder()) else { return }
         icon = target.icon as? SBApplicationIcon
 
+        guard !target.superview!.isKind(of: SBDockIconListView.classForCoder()) else { return }
+
         guard !target.isKind(of: PinnacleIconView.classForCoder()) else { return }
 
         guard !hasInit else { return }
@@ -33,6 +35,7 @@ class SBIconViewHook: ClassHook<SBIconView> {
 
     // orion:new
     @objc func _pinnacleHandleActivation() { 
+        guard !target.isFolderIcon() else { return }
         guard !active else { return }
         active = true
         let iconList = _pinnacleGetIconList()
