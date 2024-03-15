@@ -1,4 +1,4 @@
-![](assets/banner.svg) 
+![](assets/banner.png) 
 
 # Pinnacle
 
