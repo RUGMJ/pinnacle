@@ -4,9 +4,9 @@
 <svg
    version="1.1"
    id="svg1"
-   width="1540.0709"
-   height="299.22775"
-   viewBox="0 0 1540.0708 299.22773"
+   width="3000"
+   height="1000"
+   viewBox="0 0 2999.9998 999.99994"
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
@@ -31,13 +31,12 @@
        x2="1052.9233"
        y2="1023.0594"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(2.9525493,0,0,0.98171764,-1279.9034,-320.29942)" />
+       gradientTransform="matrix(2.9525493,0,0,0.98171764,-549.93886,-139.85086)" />
     <meshgradient
        id="meshgradient8"
        gradientUnits="userSpaceOnUse"
        x="729.96454"
-       y="180.44855"
-       gradientTransform="translate(-729.96453,-180.44856)">
+       y="180.44855">
       <meshrow
          id="meshrow8">
         <meshpatch
@@ -67,11 +66,14 @@
      id="rect2"
      width="2993.2852"
      height="996.84698"
-     x="-725.4472"
-     y="-178.8983" />
+     x="4.5173001"
+     y="1.5502512" />
+  <path
+     id="path2"
+     d="m 1143.7301,1013.2746 96.6906,-127.84005 39.421,-3.57506 62.4775,-81.3526 60.2461,61.68463 66.9401,-82.24573 17.1054,-1.34097 43.8837,-65.70753 139.0871,182.37197 22.3134,-27.71383 164.3748,160.02197 -168.4793,-100.31262 -42.7536,24.32523 c 0,0 -69.1714,-39.33602 -71.4028,-41.1236 -2.2313,-1.78748 -42.3954,-28.60692 -47.6022,-28.60692 -5.2057,0 -43.1385,27.71253 -43.1385,27.71253 l 24.5448,-59.00269 25.2877,-29.50135 -8.9254,-30.39443 -14.131,-19.66801 -157.6819,172.53865 2.2313,-25.03196 2.9755,-35.75965 11.1567,-27.71246 -23.8006,-26.8194 -57.2717,69.73041 -37.9328,0.89309 -105.6159,114.43038"
+     style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.122314" />
   <g
-     id="g788"
-     transform="translate(-729.96453,-180.44856)">
+     id="g788">
     <use
        id="use755"
        xlink:href="#path1"
@@ -285,12 +287,12 @@
   <text
      xml:space="preserve"
      style="font-size:386.149px;mix-blend-mode:normal;fill:url(#meshgradient8);fill-opacity:1;stroke:#000000;stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
-     x="-37.709827"
-     y="293.38272"
+     x="692.2547"
+     y="473.83127"
      id="text1"><tspan
        id="tspan1"
-       x="-37.709827"
-       y="293.38272"
+       x="692.2547"
+       y="473.83127"
        style="fill:url(#meshgradient8);fill-opacity:1;stroke:#000000;stroke-width:0;stroke-dasharray:none;stroke-opacity:1">Pinnacle</tspan></text>
   <script
      id="mesh_polyfill"
