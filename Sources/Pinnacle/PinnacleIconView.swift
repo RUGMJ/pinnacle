@@ -103,6 +103,7 @@ class PinnacleIconView: SBIconView {
         let keyWindow = SpringBoard.shared.keyWindow
         window.rootViewController = keyWindow?.rootViewController
         window.windowScene = keyWindow?.windowScene
+        Dock.hideDock()
         window.makeKeyAndVisible()
     }
 
