@@ -78,16 +78,22 @@ struct RootView: View {
                 Text("Spring Initial Velocity: Experiment default is 0\nSpring Damping: Experiment, 0.6 is similar to the original zenith\nIcon Move Duration: the amount of time it takes for icons to move (seconds)\nFade Duration: the amount of time it takes to fade / unfade (seconds)\nFade Amount: 0 - fully transparent, 1 - no fade")
             }
 
-            // TODO: Implement reset button
+            Section {
+                Link("Source Code", destination: URL(string: "https://github.com/RUGMJ/pinnacle")!)
+                Link("Have an idea?", destination: URL(
+                    string: "https://github.com/RUGMJ/pinnacle/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.md&title=%5BFEAT%5D")!)
+                Link("Found a bug?", destination: URL(
+                    string: "https://github.com/RUGMJ/pinnacle/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=%5BBUG%5D")!)
+            } header: {
+                Text("Links")
+            }
 
-           // Button(
-           //     action: {
-           //     },
-
-           //     label: {
-           //         Text("Reset Preferences")
-           //     }
-           // )
+            Section {
+                Link("Dr. Ritsch", destination: URL(string: "https://github.com/Janisbtw")!)
+                Link("Nightwind", destination: URL(string: "https://twitter.com/NightwindDev")!)
+            } header: {
+                Text("Testers")
+            }
         }
     }
 }

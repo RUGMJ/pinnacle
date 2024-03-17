@@ -4,12 +4,43 @@ import PinnacleC
 var sharedIconList: SBIconListView? = nil
 
 class SBIconListViewHook: ClassHook<SBIconListView> {
+    @Property var tapToEnd: UIGestureRecognizer? = nil
+
     func didMoveToSuperview() {
         orig.didMoveToSuperview()
+        _pinnacleEnsureTapToEndIsRegistered()
 
         if sharedIconList == nil { sharedIconList = target }
     }
-    
+
+    // orion:new
+    func _pinnacleEnsureTapToEndIsRegistered() {
+        guard tapToEnd == nil else {
+            return
+        }
+
+        guard let iconController = SBIconController.sharedInstance() else { return }
+
+        Ivars<UITapGestureRecognizer>(iconController).withIvar("_tapToEndEditingGestureRecognizer", {pointer in
+                guard let pointee = pointer?.pointee else { return }
+
+                let gesture = UITapGestureRecognizer()
+                gesture.shouldRequireFailure(of: pointee)
+                gesture.addTarget(target, action: #selector(_pinnacleHandleTapToEnd))
+                target.addGestureRecognizer(gesture)
+
+                tapToEnd = gesture
+        })
+    }
+
+    // orion:new
+    @objc func _pinnacleHandleTapToEnd() {
+        guard active else { return }
+        _pinnacleResetAllIconViews()
+        active = false
+        activeIconList = nil
+    }
+
     // orion:new
     /// - Returns: A ``SBIconView`` not attached to any superview
     func _pinnacleCreateIconView(forDisplayIdentifier: String) -> SBIconView? {

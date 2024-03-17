@@ -2,7 +2,7 @@ import Comet
 import Combine
 
 final class PreferenceStorage: ObservableObject {
-    private static let registry: String = "/var/mobile/Library/Preferences/dev.rugmj.pinnacleprefs.plist"
+    static let registry: String = "/var/mobile/Library/Preferences/dev.rugmj.pinnacleprefs.plist"
 
     @Published(key: "enabled",    registry: registry) var isEnabled: Bool = true
     @Published(key: "fadeAmount", registry: registry) var fadeAmount: Double = 0.3

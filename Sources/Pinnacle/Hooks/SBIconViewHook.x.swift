@@ -27,11 +27,11 @@ class SBIconViewHook: ClassHook<SBIconView> {
         guard !hasInit else { return }
         hasInit = true
 
-        let gesture = UISwipeGestureRecognizer()
-        gesture.direction = .up
-        gesture.addTarget(target, action: #selector(_pinnacleHandleActivation))
+        let swipeGesture = UISwipeGestureRecognizer()
+        swipeGesture.direction = .up
+        swipeGesture.addTarget(target, action: #selector(_pinnacleHandleActivation))
 
-        target.addGestureRecognizer(gesture)
+        target.addGestureRecognizer(swipeGesture)
     }
 
     // orion:new
@@ -39,8 +39,10 @@ class SBIconViewHook: ClassHook<SBIconView> {
         guard !target.isFolderIcon() else { return }
         guard !active else { return }
         active = true
+
         let iconList = _pinnacleGetIconList()
         activeIconList = iconList
+        iconList._pinnacleEnsureTapToEndIsRegistered()
 
         target.didMoveToSuperview()
 
@@ -124,15 +126,12 @@ class SBIconViewHook: ClassHook<SBIconView> {
             guard !iconView.isKind(of: PinnacleIconView.classForCoder()) else { return }
             iconView._pinnacleCalculateRowAndColumn()
             guard let row = self.row, let column = self.column else { return }
-            NSLog("Pinnacle: 1")
             iconView._pinnacleMoveAway(row, column: column, directions: directionsToMove as [NSNumber])
-            NSLog("Pinnacle: 2")
         })
     }
     
     // orion:new
     func _pinnacleReset() {
-        NSLog("Pinnacle: _pinnacleReset()")
         UIView.animate(withDuration: settings!.fadeDuration, animations: {
             self.target.alpha = 1
         })
@@ -154,7 +153,6 @@ class SBIconViewHook: ClassHook<SBIconView> {
 
         for subview in target.subviews {
             if let iconView = subview as? PinnacleIconView {
-                NSLog("Pinnacle: resetting subview")
                 iconView._pinnacleReset()
             }
         }

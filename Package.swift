@@ -73,6 +73,9 @@ let package = Package(
             targets: ["Pinnacle"]
         ),
     ],
+    dependencies: [
+        .package(path: "./shared")
+    ],
     targets: [
         .target(
             name: "PinnacleC",
@@ -81,7 +84,7 @@ let package = Package(
         ),
         .target(
             name: "Pinnacle",
-            dependencies: ["PinnacleC"],
+            dependencies: ["PinnacleC", "Shared"],
             swiftSettings: [.unsafeFlags(swiftFlags)]
         ),
     ]

@@ -1,6 +1,13 @@
 import PinnacleC
 
 class PinnacleIconPicker: UIWindow {
+    var callback: ((String?) -> Void)? = nil
+    var buttonText: String {
+        didSet {
+            closeButton.setTitle(buttonText, for: .normal)
+        }
+    }
+
     private let blurEffectView: UIVisualEffectView = {
         let blurEffect = UIBlurEffect(style: .systemUltraThinMaterial)
         let view = UIVisualEffectView(effect: blurEffect)
@@ -10,7 +17,6 @@ class PinnacleIconPicker: UIWindow {
 
     private let closeButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Close", for: .normal)
         button.setTitleColor(.label, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -32,15 +38,15 @@ class PinnacleIconPicker: UIWindow {
 
         return searchBar
     }()
-
-    var callback: ((String?) -> Void)? = nil
     
     override init(frame: CGRect) {
+        self.buttonText = "Close"
         super.init(frame: frame)
         setupUI()
     }
 
     required init?(coder: NSCoder) {
+        self.buttonText = "Close"
         super.init(coder: coder)
         setupUI()
     }
@@ -66,6 +72,7 @@ class PinnacleIconPicker: UIWindow {
     private func setupUI() {
         rotateWindowForInitialOrientation()
         searchBar.delegate = collectionView
+        closeButton.setTitle(buttonText, for: .normal)
 
         addSubview(blurEffectView)
         addSubview(closeButton)

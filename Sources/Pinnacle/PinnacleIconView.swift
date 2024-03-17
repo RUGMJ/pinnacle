@@ -82,6 +82,10 @@ class PinnacleIconView: SBIconView {
 
     @objc func handleTap() { 
         let window = PinnacleIconPicker(frame: UIScreen.main.bounds)
+        if !isPlaceholder {
+            window.buttonText = "Remove"
+        }
+
         window.callback = {
             let newBundle = $0 ?? "dev.rugmj.PinnaclePlaceholder\(self.index + 1)"
             var stack = getStackData(for: self.parentBundle)

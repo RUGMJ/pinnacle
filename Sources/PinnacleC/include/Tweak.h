@@ -18,6 +18,9 @@
 
 NSString *plusCirclePath();
 
+@interface SBHIconLibraryTableViewController : UITableView
+@end
+
 @interface SBIconScrollView : UIScrollView
 @end
 
@@ -60,6 +63,7 @@ NSString *plusCirclePath();
 - (void)_removeJitter;
 - (void)setEditing:(BOOL)arg;
 - (void)setAllowsLabelArea:(BOOL)allows;
+- (UIView *)viewController;
 @end
 
 @interface SBIconListView ()
@@ -76,6 +80,7 @@ NSString *plusCirclePath();
 - (NSUInteger)columnAtPoint:(CGPoint)point;
 - (BOOL)_pinnacleIsEditing;
 - (void)_pinnacleResetAllIconViews;
+- (void)_pinnacleEnsureTapToEndIsRegistered;
 @end
 
 @interface SBHLibraryCategoryPodIconView : SBIconView
