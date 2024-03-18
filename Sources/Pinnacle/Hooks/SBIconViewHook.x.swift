@@ -228,6 +228,7 @@ class SBIconViewHook: ClassHook<SBIconView> {
     func tapGestureDidChange(_ arg0: Any) {
         orig.tapGestureDidChange(arg0)
 
+        guard active else { return }
         activeIconList!._pinnacleResetAllIconViews()
         active = false
         activeIconList = nil
