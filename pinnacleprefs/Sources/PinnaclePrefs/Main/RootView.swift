@@ -89,7 +89,7 @@ struct RootView: View {
             }
 
             Section {
-                Link("Dr. Ritsch", destination: URL(string: "https://github.com/Janisbtw")!)
+                Link("Janisbtw", destination: URL(string: "https://github.com/Janisbtw")!)
                 Link("Nightwind", destination: URL(string: "https://twitter.com/NightwindDev")!)
             } header: {
                 Text("Testers")
