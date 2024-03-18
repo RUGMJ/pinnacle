@@ -10,6 +10,7 @@ final class PreferenceStorage: ObservableObject {
     @Published(key: "iconMoveDuration", registry: registry) var iconMoveDuration: Double = 0.5
     @Published(key: "springDamping", registry: registry) var springDamping: Double = 0.6
     @Published(key: "springInitialVelocity", registry: registry) var springInitialVelocity: Double = 0.0
+    @Published(key: "hapticFeedback", registry: registry) var hapticFeedback = true
 
     private var cancellables: Set<AnyCancellable> = []
 

@@ -23,4 +23,5 @@ struct Settings: Codable {
     var iconMoveDuration = 0.5
     var springDamping = 0.6
     var springInitialVelocity = 0.0
+    var hapticFeedback = true
 }

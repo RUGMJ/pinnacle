@@ -128,6 +128,10 @@ class SBIconViewHook: ClassHook<SBIconView> {
             guard let row = self.row, let column = self.column else { return }
             iconView._pinnacleMoveAway(row, column: column, directions: directionsToMove as [NSNumber])
         })
+
+        if settings!.hapticFeedback {
+            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+        }
     }
     
     // orion:new

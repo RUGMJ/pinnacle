@@ -33,6 +33,10 @@ struct RootView: View {
             }
 
             Section {
+                Toggle("Haptic Feedback", isOn: $preferenceStorage.hapticFeedback)
+            }
+
+            Section {
                 SliderWithLabel(
                     label: "Fade Amount",
                     value: $preferenceStorage.fadeAmount,
