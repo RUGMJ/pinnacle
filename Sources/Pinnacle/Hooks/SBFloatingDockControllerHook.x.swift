@@ -20,11 +20,15 @@ import PinnacleC
 
 struct Dock {
   static func hideDock() {
+    guard UIDevice.current.userInterfaceIdiom == .pad else { return }
+
     let iconController = SBIconController.sharedInstance().as(interface: IconController.self)
     iconController.parentViewController.homeScreenFloatingDockAssertion?.floatingDockController?._dismissFloatingDockIfPresentedAnimated(true, completionHandler: nil)
   }
 
   static func showDock() {
+    guard UIDevice.current.userInterfaceIdiom == .pad else { return }
+    
     let iconController = SBIconController.sharedInstance().as(interface: IconController.self)
     iconController.parentViewController.homeScreenFloatingDockAssertion?.floatingDockController?._presentFloatingDockIfDismissedAnimated(true, completionHandler: nil)
   }
