@@ -225,6 +225,13 @@ class SBIconViewHook: ClassHook<SBIconView> {
         _pinnacleMoveWith(x: xDiff, y: yDiff)
     }        
 
+    func tapGestureDidChange(_ arg0: Any) {
+        orig.tapGestureDidChange(arg0)
+
+        activeIconList!._pinnacleResetAllIconViews()
+        active = false
+        activeIconList = nil
+    }
 
     // orion:new
     /// Moves by the values provided
