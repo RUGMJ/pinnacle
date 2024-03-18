@@ -109,6 +109,7 @@ class PinnacleIconPicker: UIWindow {
         }) {_ in 
             self.isHidden = true
             self.callback?(nil)
+            Dock.showDock()
         }
     }
 

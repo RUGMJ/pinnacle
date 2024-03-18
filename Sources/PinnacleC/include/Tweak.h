@@ -1,4 +1,5 @@
 #import <AltList/LSApplicationProxy+AltList.h>
+#include <UIKit/UIViewController.h>
 #import <Foundation/NSValue.h>
 #import <MobileCoreServices/LSApplicationProxy.h>
 #import <MobileCoreServices/LSApplicationWorkspace.h>
@@ -22,6 +23,23 @@ NSString *plusCirclePath();
 @end
 
 @interface SBIconScrollView : UIScrollView
+@end
+
+@interface SBFloatingDockController : UIViewController
+- (void)_presentFloatingDockIfDismissedAnimated:(BOOL)present completionHandler:(id)completionHandler;
+- (void)_dismissFloatingDockIfPresentedAnimated:(BOOL)dismiss completionHandler:(id)completionHandler;
+@end
+
+@interface SBFloatingDockBehaviorAssertion : NSObject
+@property SBFloatingDockController *floatingDockController;
+@end
+
+@interface SBHomeScreenViewController : UIViewController
+@property (nonatomic, strong, readwrite) SBFloatingDockBehaviorAssertion *homeScreenFloatingDockAssertion;
+@end
+
+@interface SBIconController ()
+@property (nonatomic, weak, readwrite) SBHomeScreenViewController *parentViewController;
 @end
 
 @interface SBRootFolderView ()
