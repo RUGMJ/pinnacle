@@ -238,19 +238,19 @@ class SBIconViewHook: ClassHook<SBIconView> {
     func _pinnacleMoveWith(x: Int, y: Int) {
         let amount = _pinnacleGetEffectiveIconSpacing()
 
-        let height = target.frame.height + amount.height - 15 // TODO find a way to find this offset at runtime
-        let width = target.frame.width + amount.width
+        let height = target.iconImageFrame.height + amount.height // TODO find a way to find this offset at runtime
+        let width = target.iconImageFrame.width + amount.width
 
         UIView.animate(
             withDuration: settings!.iconMoveDuration,
             delay: 0,
             usingSpringWithDamping: settings!.springDamping,
-            initialSpringVelocity: settings!.springInitialVelocity
+            initialSpringVelocity: settings!.springInitialVelocity,
+            animations: {
+                self.target.frame.origin.y += CGFloat(y) * height
+                self.target.frame.origin.x += CGFloat(x) * width
+            }
         )
-        {
-            self.target.frame.origin.y += CGFloat(y) * height
-            self.target.frame.origin.x += CGFloat(x) * width
-        }
     }
 
     // orion:new
