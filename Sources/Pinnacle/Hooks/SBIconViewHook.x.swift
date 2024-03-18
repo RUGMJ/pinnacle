@@ -238,7 +238,7 @@ class SBIconViewHook: ClassHook<SBIconView> {
     func _pinnacleMoveWith(x: Int, y: Int) {
         let amount = _pinnacleGetEffectiveIconSpacing()
 
-        let height = target.iconImageFrame.height + amount.height // TODO find a way to find this offset at runtime
+        let height = target.iconImageFrame.height + amount.height
         let width = target.iconImageFrame.width + amount.width
 
         UIView.animate(
