@@ -24,13 +24,8 @@ class Pinnacle: Tweak {
 
 
 func loadSettings() {
-    do {
-        try TweakPreferences.shared.loadSettings()
+        TweakPreferences.shared.loadSettings()
         settings = TweakPreferences.shared.settings
-    } catch {
-        remLog("Failed to load settings: \(error)")
-        remLog(error)
-    }
 }
 
 var active: Bool = false

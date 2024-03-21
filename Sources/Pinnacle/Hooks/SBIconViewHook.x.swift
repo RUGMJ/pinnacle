@@ -235,12 +235,18 @@ class SBIconViewHook: ClassHook<SBIconView> {
     }
 
     // orion:new
+    func _pinnacleGetImageSize() -> CGRect {
+        return target.iconImageFrame()
+    }
+
+    // orion:new
     /// Moves by the values provided
     func _pinnacleMoveWith(x: Int, y: Int) {
         let amount = _pinnacleGetEffectiveIconSpacing()
+        let imageSize = target._pinnacleGetImageSize()
 
-        let height = target.iconImageFrame.height + amount.height
-        let width = target.iconImageFrame.width + amount.width
+        let height = imageSize.height + amount.height
+        let width = imageSize.width + amount.width
 
         UIView.animate(
             withDuration: settings!.iconMoveDuration,

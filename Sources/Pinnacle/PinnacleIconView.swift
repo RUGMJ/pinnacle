@@ -10,6 +10,8 @@ class PinnacleIconView: SBIconView {
     var parentBundle = ""
     var index = 0
 
+    var imageView: UIImageView? = nil
+
     convenience init(fromIconView: SBIconView, xDir: Int, yDir: Int, bundle: String, parentBundle: String, index: Int, isEditing: Bool) {
         self.init()
         setupCommonProperties(xDir: xDir, yDir: yDir, bundle: bundle, parentBundle: parentBundle, index: index)
@@ -43,6 +45,8 @@ class PinnacleIconView: SBIconView {
         gesture.addTarget(self, action: #selector(handleTap))
 
         imageView.addGestureRecognizer(gesture)
+
+        self.imageView = imageView
 
         self.addSubview(imageView)
         self.isPlaceholder = true
@@ -78,6 +82,14 @@ class PinnacleIconView: SBIconView {
 
             completion: {_ in self.removeFromSuperview() })
 
+    }
+
+    override func _pinnacleGetImageSize() -> CGRect {
+        if let imageView = self.imageView {
+            return imageView.frame
+        } else {
+            return iconImageFrame()
+        }
     }
 
     @objc func handleTap() { 

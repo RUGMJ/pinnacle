@@ -7,9 +7,10 @@ final class TweakPreferences {
 
     private let preferencesFilePath = "/var/mobile/Library/Preferences/dev.rugmj.pinnacleprefs.plist"
 
-    func loadSettings() throws {
-        if let data = FileManager.default.contents(atPath: preferencesFilePath) {
-            self.settings = try PropertyListDecoder().decode(Settings.self, from: data)
+    func loadSettings() {
+        if let data = try? Data(contentsOf: URL(fileURLWithPath: preferencesFilePath)),
+           let decodedSettings = try? PropertyListDecoder().decode(Settings.self, from: data) {
+            self.settings = decodedSettings
         } else {
             self.settings = Settings()
         }

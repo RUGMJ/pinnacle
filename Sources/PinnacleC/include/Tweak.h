@@ -1,5 +1,4 @@
 #import <AltList/LSApplicationProxy+AltList.h>
-#include <UIKit/UIViewController.h>
 #import <Foundation/NSValue.h>
 #import <MobileCoreServices/LSApplicationProxy.h>
 #import <MobileCoreServices/LSApplicationWorkspace.h>
@@ -26,8 +25,10 @@ NSString *plusCirclePath();
 @end
 
 @interface SBFloatingDockController : UIViewController
-- (void)_presentFloatingDockIfDismissedAnimated:(BOOL)present completionHandler:(id)completionHandler;
-- (void)_dismissFloatingDockIfPresentedAnimated:(BOOL)dismiss completionHandler:(id)completionHandler;
+- (void)_presentFloatingDockIfDismissedAnimated:(BOOL)present
+                              completionHandler:(id)completionHandler;
+- (void)_dismissFloatingDockIfPresentedAnimated:(BOOL)dismiss
+                              completionHandler:(id)completionHandler;
 @end
 
 @interface SBFloatingDockBehaviorAssertion : NSObject
@@ -35,11 +36,13 @@ NSString *plusCirclePath();
 @end
 
 @interface SBHomeScreenViewController : UIViewController
-@property (nonatomic, strong, readwrite) SBFloatingDockBehaviorAssertion *homeScreenFloatingDockAssertion;
+@property(nonatomic, strong, readwrite)
+    SBFloatingDockBehaviorAssertion *homeScreenFloatingDockAssertion;
 @end
 
 @interface SBIconController ()
-@property (nonatomic, weak, readwrite) SBHomeScreenViewController *parentViewController;
+@property(nonatomic, weak, readwrite)
+    SBHomeScreenViewController *parentViewController;
 @end
 
 @interface SBRootFolderView ()
@@ -74,9 +77,9 @@ NSString *plusCirclePath();
 - (void)_pinnacleReset;
 - (void)_pinnacleCalculateRowAndColumn;
 - (CGSize)_pinnacleGetEffectiveIconSpacing;
+- (CGRect)_pinnacleGetImageSize;
 - (SBIconListView *)_pinnacleGetIconList;
-@property CGRect iconImageFrame;
-- (NSString *)applicationBundleIdentifierForShortcuts;
+- (CGRect)iconImageFrame;
 - (NSArray<NSNumber *> *)_pinnacleCalcAvailableDirections;
 - (void)_removeJitter;
 - (void)setEditing:(BOOL)arg;
