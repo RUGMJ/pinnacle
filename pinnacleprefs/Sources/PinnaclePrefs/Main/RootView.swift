@@ -37,6 +37,16 @@ struct RootView: View {
             }
 
             Section {
+                Picker("Gesture Direction", selection: $preferenceStorage.activationGestureDirection) {
+                    Text("Up").tag("up")
+                    Text("Down").tag("down")
+                }.pickerStyle(.segmented)
+
+            } header: {
+                Text("Gesture")
+            }
+
+            Section {
                 SliderWithLabel(
                     label: "Fade Amount",
                     value: $preferenceStorage.fadeAmount,
@@ -95,6 +105,7 @@ struct RootView: View {
             Section {
                 Link("Janisbtw", destination: URL(string: "https://github.com/Janisbtw")!)
                 Link("Nightwind", destination: URL(string: "https://twitter.com/NightwindDev")!)
+                Link("Aka", destination: URL(string: "https://twitter.com/AKAExpress2")!)
             } header: {
                 Text("Testers")
             }

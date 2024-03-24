@@ -25,4 +25,5 @@ struct Settings: Codable {
     var springDamping = 0.6
     var springInitialVelocity = 0.0
     var hapticFeedback = true
+    var activationGestureDirection = "up"
 }
