@@ -6,4 +6,4 @@ Description: A new way to organise your apps
 Maintainer: rugmj
 Author: rugmj
 Section: Tweaks
-Depends: ${ORION}, firmware (>= 16.0), com.ginsu.comet, com.opa334.altlist
+Depends: ${ORION}, firmware (>= 14.0), com.ginsu.comet, com.opa334.altlist
