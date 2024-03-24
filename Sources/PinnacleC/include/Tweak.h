@@ -18,6 +18,9 @@
 
 NSString *plusCirclePath();
 
+@interface SBSearchScrollView : UIScrollView
+@end
+
 @interface SBHIconLibraryTableViewController : UITableView
 @end
 

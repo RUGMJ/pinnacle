@@ -11,6 +11,7 @@ final class PreferenceStorage: ObservableObject {
     @Published(key: "springDamping", registry: registry) var springDamping: Double = 0.6
     @Published(key: "springInitialVelocity", registry: registry) var springInitialVelocity: Double = 0.0
     @Published(key: "hapticFeedback", registry: registry) var hapticFeedback = true
+    @Published(key: "activationGestureDirection", registry: registry) var activationGestureDirection = "up"
 
     private var cancellables: Set<AnyCancellable> = []
 

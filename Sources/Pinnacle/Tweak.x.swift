@@ -1,6 +1,8 @@
 import PinnacleC
 import Orion
 
+struct SpotlightHookGroup: HookGroup {}
+
 class Pinnacle: Tweak {
     required init() {
         remLog("Starting")
@@ -14,6 +16,10 @@ class Pinnacle: Tweak {
                 loadSettings()
             })
         }, name, nil, .deliverImmediately)
+
+        if settings!.activationGestureDirection == "down" {
+            SpotlightHookGroup().activate()
+        }
     }
 
     static func handleError(_ error: OrionHookError) {
