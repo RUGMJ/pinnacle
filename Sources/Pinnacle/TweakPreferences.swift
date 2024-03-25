@@ -1,11 +1,11 @@
 import Foundation
-import SwiftUI
+import libroot
 
 final class TweakPreferences {
     private(set) var settings: Settings!
     static let shared = TweakPreferences()
 
-    private let preferencesFilePath = "/var/mobile/Library/Preferences/dev.rugmj.pinnacleprefs.plist"
+    private let preferencesFilePath = jbRootPath("/var/mobile/Library/Preferences/dev.rugmj.pinnacleprefs.plist")
 
     func loadSettings() {
         if let data = try? Data(contentsOf: URL(fileURLWithPath: preferencesFilePath)),
