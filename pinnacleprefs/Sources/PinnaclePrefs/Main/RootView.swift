@@ -1,4 +1,5 @@
 import SwiftUI
+import libroot
 import Comet
 
 struct SliderWithLabel: View {
@@ -90,6 +91,17 @@ struct RootView: View {
                 Text("Animation Settings")
             } footer: {
                 Text("Spring Initial Velocity: Experiment default is 0\nSpring Damping: Experiment, 0.6 is similar to the original zenith\nIcon Move Duration: the amount of time it takes for icons to move (seconds)\nFade Duration: the amount of time it takes to fade / unfade (seconds)\nFade Amount: 0 - fully transparent, 1 - no fade")
+            }
+
+            Section {
+                Button(action: {
+                    try? FileManager.default.removeItem(atPath: jbRootPath("/var/mobile/Library/Pinnacle/stackData.plist"))
+                }) {
+                    Text("Reset Data")
+                        .foregroundColor(.red)
+                }
+            } header: {
+                Text("Danger")
             }
 
             Section {
