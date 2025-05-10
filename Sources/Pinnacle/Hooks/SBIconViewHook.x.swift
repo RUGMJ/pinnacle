@@ -4,6 +4,8 @@ import PinnacleC
 class SBIconViewHook: ClassHook<SBIconView> {
     @Property var hasInit = false
     @Property var icon: SBApplicationIcon?
+    
+    @Property var grabberView: UIImageView? = nil
 
     @Property var row: UInt? = nil
     @Property var column: UInt? = nil
@@ -14,7 +16,12 @@ class SBIconViewHook: ClassHook<SBIconView> {
     func didMoveToSuperview() {
         orig.didMoveToSuperview()
 
-        guard !target.isFolderIcon() else { return }
+        guard !target.isFolderIcon() else {
+            if grabberView != nil {
+                grabberView?.removeFromSuperview()
+            }
+            return
+        }
         guard target.icon != nil else { return }
         guard target.icon.isKind(of: SBApplicationIcon.classForCoder()) else { return }
         icon = target.icon as? SBApplicationIcon
@@ -23,6 +30,30 @@ class SBIconViewHook: ClassHook<SBIconView> {
         guard !target.superview!.isKind(of: SBDockIconListView.classForCoder()) else { return }
 
         guard !target.isKind(of: PinnacleIconView.classForCoder()) else { return }
+        
+        if grabberImage == nil {
+            grabberImage = UIImage(contentsOfFile: grabberPath())
+        }
+        
+        if grabberView == nil {
+            let iconSize = _pinnacleGetImageSize()
+            
+            grabberView = UIImageView(frame: CGRectMake(iconSize.width * -0.06, iconSize.height * -0.06, iconSize.width * 1.12, iconSize.height * 1.12))
+            grabberView?.isUserInteractionEnabled = false
+            grabberView?.contentMode = .scaleAspectFit
+        }
+        
+        grabberView?.alpha = 1
+        _pinnacleUpdateIndicator(bundleID: icon!.applicationBundleID())
+        
+        if !grabberView!.isDescendant(of: target) {
+            target.addSubview(grabberView!)
+        }
+        target.sendSubviewToBack(grabberView!)
+        
+        _pinnacleForSubviews({(iconView: PinnacleIconView) -> Void in
+            iconView.removeFromSuperview()
+        })
 
         guard !hasInit else { return }
         hasInit = true
@@ -39,10 +70,54 @@ class SBIconViewHook: ClassHook<SBIconView> {
 
         target.addGestureRecognizer(swipeGesture)
         scrollViewPanGesture?.require(toFail: swipeGesture)
+        
+        if settings!.activationGestureDirection == "both" {
+            let secondSwipeGesture = UISwipeGestureRecognizer()
+            secondSwipeGesture.direction = .up
+            
+            secondSwipeGesture.addTarget(target, action: #selector(_pinnacleHandleActivation))
+            
+            target.addGestureRecognizer(secondSwipeGesture)
+            scrollViewPanGesture?.require(toFail: secondSwipeGesture)
+        }
+    }
+    
+    // orion:new
+    func _pinnacleUpdateIndicator(bundleID: String) {
+        if settings!.indicator == "none" {
+            grabberView?.image = nil
+            return
+        }
+        
+        let data = getStackData(for: bundleID)
+        var direction = 0
+
+        let offsets = [
+            (0, -1),   // Up
+            (1, 0),   // Right
+            (0, 1),  // Down
+            (-1, 0)   // Left
+        ]
+        
+        for (index, bundle) in data.enumerated() {
+            direction = (direction + 1) % 4
+            let (xDir, yDir) = offsets[direction]
+            
+            if !bundle.contains("dev.rugmj.PinnaclePlaceholder") {
+                if settings!.indicator == "apps" {
+                    // TODO: App previews
+                } else {
+                    grabberView?.image = grabberImage
+                    return
+                }
+            }
+        }
+        
+        grabberView?.image = nil
     }
 
     // orion:new
-    @objc func _pinnacleHandleActivation() { 
+    @objc func _pinnacleHandleActivation() {
         guard !target.isFolderIcon() else { return }
         guard !active else { return }
         active = true
@@ -146,9 +221,9 @@ class SBIconViewHook: ClassHook<SBIconView> {
         UIView.animate(withDuration: settings!.fadeDuration, animations: {
             self.target.alpha = 1
         })
-
+        
         guard !target.icon.isKind(of: SBWidgetIcon.classForCoder()) else { return }
-
+        
         if let x = originalX, let y = originalY {
             UIView.animate(
                 withDuration: settings!.iconMoveDuration,
@@ -161,12 +236,37 @@ class SBIconViewHook: ClassHook<SBIconView> {
                     self.target.frame.origin.x = x
                 }
         }
-
-        for subview in target.subviews {
-            if let iconView = subview as? PinnacleIconView {
-                iconView._pinnacleReset()
+        
+        if self.grabberView != nil {
+            if target.isFolderIcon() {
+                self.grabberView?.removeFromSuperview()
+            } else {
+                if !self.grabberView!.isDescendant(of: target) {
+                    target.addSubview(self.grabberView!)
+                }
+                if icon!.applicationBundleID() != nil {
+                    _pinnacleUpdateIndicator(bundleID: self.icon!.applicationBundleID())
+                } else {
+                    self.grabberView?.image = nil
+                }
+                target.sendSubviewToBack(self.grabberView!)
+                UIView.animate(
+                    withDuration: settings!.iconMoveDuration,
+                    delay: 0,
+                    usingSpringWithDamping: settings!.springDamping,
+                    initialSpringVelocity: settings!.springInitialVelocity
+                )
+                {
+                    self.grabberView?.alpha = 1
+                }
             }
         }
+        
+        
+        _pinnacleForSubviews({(iconView: PinnacleIconView) -> Void in
+            iconView._pinnacleReset()
+        })
+        
     }
 
 
@@ -227,7 +327,17 @@ class SBIconViewHook: ClassHook<SBIconView> {
         } else {
             yDiff *= directions[2] as! Int
         }
-
+        
+        
+        UIView.animate(
+            withDuration: settings!.iconMoveDuration,
+            delay: 0,
+            usingSpringWithDamping: settings!.springDamping,
+            initialSpringVelocity: settings!.springInitialVelocity
+        )
+        {
+            self.grabberView?.alpha = 0
+        }
 
         _pinnacleMoveWith(x: xDiff, y: yDiff)
     }        

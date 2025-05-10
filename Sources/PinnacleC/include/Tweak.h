@@ -17,6 +17,7 @@
 #import <objc/NSObjCRuntime.h>
 
 NSString *plusCirclePath();
+NSString *grabberPath();
 
 @interface SBSearchScrollView : UIScrollView
 @end

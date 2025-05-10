@@ -68,6 +68,7 @@ class SBIconListViewHook: ClassHook<SBIconListView> {
 
     // orion:new
     func _pinnacleForIconViews(_ action:(SBIconView) -> Void) {
+        if target.subviews.isEmpty { return } // Fixes a crash issue
         var iconViews: [UIView]
         if target.subviews[0].isKind(of: SBFTouchPassThroughView.classForCoder()) {
             iconViews = target.subviews[0].subviews

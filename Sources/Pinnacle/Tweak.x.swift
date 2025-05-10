@@ -18,7 +18,7 @@ class Pinnacle: Tweak {
             })
         }, name, nil, .deliverImmediately)
 
-        if settings!.activationGestureDirection == "down" {
+        if settings!.activationGestureDirection != "up" {
             SpotlightHookGroup().activate()
         }
     }
@@ -102,3 +102,6 @@ func normalise(_ number: Int) -> Int {
 }
 
 var settings: Settings?
+
+var grabberImage: UIImage? = nil
+var placeholderImage: UIImage? = nil

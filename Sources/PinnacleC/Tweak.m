@@ -11,3 +11,8 @@ NSString *plusCirclePath() {
   return JBROOT_PATH_NSSTRING(
       @"/Library/Tweak Support/dev.rugmj.pinnacle/plus-circle.png");
 }
+
+NSString *grabberPath() {
+  return JBROOT_PATH_NSSTRING(
+      @"/Library/Tweak Support/dev.rugmj.pinnacle/grabber.png");
+}
